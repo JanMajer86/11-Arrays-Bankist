@@ -61,9 +61,30 @@ const inputLoanAmount = document.querySelector('.form__input--loan-amount');
 const inputCloseUsername = document.querySelector('.form__input--user');
 const inputClosePin = document.querySelector('.form__input--pin');
 
+const displayMovements = function (movements) {
+  containerMovements.innerHTML = '';
+  movements.forEach(function (mov, i) {
+    const type = mov > 0 ? 'deposit' : 'withdrawal';
+    const html = ` 
+    <div class="movements__row">
+      <div class="movements__type movements__type--${type}">${
+      i + 1
+    } ${type}</div>
+      <div class="movements__date">3 days ago</div>
+      <div class="movements__value">${mov}€</div>
+  </div>`;
+
+    containerMovements.insertAdjacentHTML('afterbegin', html);
+  });
+};
+
+displayMovements(account1.movements);
+
 /////////////////////////////////////////////////
 /////////////////////////////////////////////////
 // LECTURES
+
+/*
 
 const currencies = new Map([
   ['USD', 'United States dollar'],
@@ -73,7 +94,32 @@ const currencies = new Map([
 
 const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
 
+// for (const movement of movements) {
+for (const [i, movement] of movements.entries()) {
+  if (movement > 0) {
+    console.log(`Movement ${i + 1}: You deposited ${movement}`);
+  } else {
+    console.log(`Movement ${i + 1}: You withdrew ${Math.abs(movement)}`);
+  }
+}
+
+console.log('----FOREACH----');
+
+movements.forEach(function (mov, i, arr) {
+  const direction = mov > 0 ? 'deposited' : 'withdrew';
+  console.log(`Movement ${i}: You ${direction} ${Math.abs(mov)} $`);
+});
+
+
+// forEach will always loop through entire array (cannot break/continue)
+
+// 0: function(200)
+// 1: function(450)
+// 2: function(-400)
+
 /////////////////////////////////////////////////
+
+
 
 let arr = ['a', 'b', 'c', 'd', 'e'];
 // SLICE (does not mutate original method)
@@ -122,3 +168,7 @@ console.log(arrAt[0]);
 console.log(arrAt[arrAt.length - 1]);
 console.log(arrAt.slice(-1)[0]);
 console.log(arrAt.at(-1));
+// also works on strings
+console.log('Hochmajer'.at(0));
+
+*/
