@@ -172,3 +172,26 @@ console.log(arrAt.at(-1));
 console.log('Hochmajer'.at(0));
 
 */
+
+/*
+// working with arrays challenge #01
+
+const checkDogs = function (arr1, arr2) {
+  const arrCopy = arr1.slice(1, -1);
+  const arrFinal = arrCopy.concat(arr2);
+  console.log(arrFinal);
+  arrFinal.forEach(function (age, i) {
+    const str =
+      age >= 3 ? `an adult, and is ${age} years old` : `still a puppy 🐕`;
+    console.log(`Dog number ${i + 1} is ` + str);
+  });
+};
+
+const dogsJulia = [3, 5, 2, 15, 7];
+const dogsKate = [4, 1, 15, 8, 3];
+const dogsJulia2 = [9, 16, 6, 8, 3];
+const dogsKate2 = [10, 5, 6, 1, 4];
+
+checkDogs(dogsJulia, dogsKate);
+checkDogs(dogsJulia2, dogsKate2);
+*/
