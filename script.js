@@ -206,3 +206,15 @@ const dogsKate2 = [10, 5, 6, 1, 4];
 checkDogs(dogsJulia, dogsKate);
 checkDogs(dogsJulia2, dogsKate2);
 */
+
+// FILTER [array method]
+const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
+const deposits = movements.filter(function (mov) {
+  return mov > 0;
+});
+console.log(movements);
+console.log(deposits);
+
+const withdrawals = movements.filter(mov => mov < 0);
+
+console.log(withdrawals);
