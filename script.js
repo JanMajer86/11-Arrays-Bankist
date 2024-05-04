@@ -61,6 +61,10 @@ const inputLoanAmount = document.querySelector('.form__input--loan-amount');
 const inputCloseUsername = document.querySelector('.form__input--user');
 const inputClosePin = document.querySelector('.form__input--pin');
 
+// FUNCTIONS
+
+//
+
 const displayMovements = function (movements) {
   containerMovements.innerHTML = '';
   movements.forEach(function (mov, i) {
@@ -80,12 +84,27 @@ const displayMovements = function (movements) {
 
 displayMovements(account1.movements);
 
+//
+
 const calcDisplayBalance = function (movements) {
   const balance = movements.reduce((acc, mov) => acc + mov, 0);
   labelBalance.textContent = `${balance}€`;
 };
 
 calcDisplayBalance(account1.movements);
+
+//
+
+const calcDisplaySummary = function (movements) {
+  const sumIn = movements
+    .filter(mov => mov > 0)
+    .reduce((acc, mov) => acc + mov, 0);
+  labelSumIn.textContent = `${sumIn}€`;
+};
+
+calcDisplaySummary(account1.movements);
+
+//
 
 const createUserNames = function (accs) {
   accs.forEach(function (acc) {
@@ -96,6 +115,7 @@ const createUserNames = function (accs) {
       .join('');
   });
 };
+
 createUserNames(accounts);
 
 /////////////////////////////////////////////////
@@ -196,12 +216,8 @@ const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
 const deposits = movements.filter(function (mov) {
   return mov > 0;
 });
-console.log(movements);
-console.log(deposits);
 
 const withdrawals = movements.filter(mov => mov < 0);
-
-console.log(withdrawals);
 
 // REDUCE [array method]
 // accumulator, current, index, array
@@ -221,4 +237,3 @@ const maxValue = movements.reduce((acc, mov) => {
   if (acc > mov) return acc;
   else return mov;
 }, movements[0]);
-console.log(maxValue);
