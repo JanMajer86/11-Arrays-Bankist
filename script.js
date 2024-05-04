@@ -80,6 +80,13 @@ const displayMovements = function (movements) {
 
 displayMovements(account1.movements);
 
+const calcDisplayBalance = function (movements) {
+  const balance = movements.reduce((acc, mov) => acc + mov, 0);
+  labelBalance.textContent = `${balance}€`;
+};
+
+calcDisplayBalance(account1.movements);
+
 const createUserNames = function (accs) {
   accs.forEach(function (acc) {
     acc.username = acc.owner
@@ -206,7 +213,7 @@ const dogsKate2 = [10, 5, 6, 1, 4];
 checkDogs(dogsJulia, dogsKate);
 checkDogs(dogsJulia2, dogsKate2);
 */
-
+/*
 // FILTER [array method]
 const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
 const deposits = movements.filter(function (mov) {
@@ -218,3 +225,16 @@ console.log(deposits);
 const withdrawals = movements.filter(mov => mov < 0);
 
 console.log(withdrawals);
+
+// REDUCE [array method]
+// accumulator, current, index, array
+// accumulator -> SNOWBALL
+// 0 -> specify the value of accumulator in the beginning
+
+// const balance = movements.reduce(function (acc, cur, i, arr) {
+//   console.log(`Iteration ${i}: ${acc}`);
+//   return acc + cur;
+// }, 0);
+
+const balance = movements.reduce((acc, cur, i) => acc + cur, 0);
+*/
