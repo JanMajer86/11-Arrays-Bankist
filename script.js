@@ -184,6 +184,46 @@ btnTransfer.addEventListener('click', function (e) {
   }
 });
 
+btnLoan.addEventListener('click', function (e) {
+  e.preventDefault();
+  const loanAmount = Number(inputLoanAmount.value);
+
+  if (
+    loanAmount > 0 &&
+    currentAccount.movements.some(mov => mov >= loanAmount * 0.1)
+  ) {
+    console.log(`Loan amount: ${loanAmount} approved`);
+    // Add movement
+    currentAccount.movements.push(loanAmount);
+
+    // Update UI
+    updateUI(currentAccount);
+  }
+
+  inputLoanAmount.value = '';
+});
+
+btnClose.addEventListener('click', function (e) {
+  e.preventDefault();
+  if (
+    currentAccount.username === inputCloseUsername.value &&
+    currentAccount.pin === Number(inputClosePin.value)
+  ) {
+    const index = accounts.findIndex(
+      acc => acc.username === currentAccount.username
+    );
+    console.log(index);
+
+    // Delete user
+    accounts.splice(index, 1);
+
+    // Hide UI
+    containerApp.style.opacity = 0;
+    labelWelcome.textContent = 'Log in to get started';
+  }
+  inputCloseUsername.value = inputClosePin.value = '';
+});
+
 /////////////////////////////////////////////////
 /////////////////////////////////////////////////
 // LECTURES
@@ -276,8 +316,9 @@ console.log(arrAt.at(-1));
 console.log('Hochmajer'.at(0));
 
 */
-
+/*
 // FILTER [array method]
+
 const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
 const deposits = movements.filter(function (mov) {
   return mov > 0;
@@ -303,3 +344,20 @@ const maxValue = movements.reduce((acc, mov) => {
   if (acc > mov) return acc;
   else return mov;
 }, movements[0]);
+
+// EQUALITY
+console.log(movements.includes(-130));
+
+// SOME: CONDITION
+console.log(movements.some(mov => mov > 1500));
+
+// EVERY: CONDITION
+console.log(movements.every(mov => mov > 0));
+console.log(account4.movements.every(mov => mov > 0));
+
+// Separate callback
+const deposit = mov => mov > 0;
+console.log(movements.some(deposit));
+console.log(movements.every(deposit));
+console.log(movements.filter(deposit));
+*/
