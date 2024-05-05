@@ -139,6 +139,7 @@ const updateUI = function (acc) {
 // Event handlers
 
 let currentAccount;
+let isSorted = false;
 
 btnLogin.addEventListener('click', function (e) {
   e.preventDefault();
@@ -222,6 +223,19 @@ btnClose.addEventListener('click', function (e) {
     labelWelcome.textContent = 'Log in to get started';
   }
   inputCloseUsername.value = inputClosePin.value = '';
+});
+
+btnSort.addEventListener('click', function () {
+  currentAccount.movementsSorted = [...currentAccount.movements].sort(
+    (a, b) => a - b
+  );
+
+  isSorted = isSorted ? false : true;
+  console.log(isSorted);
+  console.log(currentAccount.movementsSorted);
+  console.log(currentAccount.movements);
+  if (isSorted) displayMovements(currentAccount.movementsSorted);
+  else displayMovements(currentAccount.movements);
 });
 
 /////////////////////////////////////////////////
@@ -361,7 +375,7 @@ console.log(movements.some(deposit));
 console.log(movements.every(deposit));
 console.log(movements.filter(deposit));
 */
-
+/*
 // FLAT method
 
 const arr = [[1, 2, 3], [4, 5, 6], 7, 8];
@@ -383,3 +397,10 @@ const overalBalance2 = accounts
   .reduce((acc, mov) => acc + mov, 0);
 
 console.log(overalBalance2);
+
+const allMovements = accounts.flatMap(acc => acc.movements);
+console.log(allMovements);
+
+allMovements.sort((a, b) => b - a);
+console.log(allMovements);
+*/
